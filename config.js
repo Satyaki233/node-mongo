@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+require('dotenv').config();
 
 
-mongoose.connect('mongodb://localhost/medify', {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -41,57 +42,19 @@ const User = new Schema({
 
 })
 
-// const Doctor = new Schema({
-//     name : String,
-//     email : String,
-//     degree : {
-//          type: String,
-//          required: true
-//     },
-//     address : String,
-//     age : {
-//         type:Number,
-//         max:70,
-//         required:true
-//     },
-//     speciality: String,
-//     fees: {
-//         type:Number,
-//         max: 50000
-//     },
-//     time:{
-//         type: String,
-//         required:true
-//     },
-//     experience : {
-//         type: Number,
-//         min:1
-//     },
-//     dept: String,
-//     hospital:String
 
-    
-// })
 
-// const Hospital = new Schema({
-//     title: String,
-//     address:String,
-//     dept:Array
-    
-// })
 
 const UserInfo = mongoose.model('Register',Register)
 const UserLogin = mongoose.model('User',User)
-// const DoctorInfo = mongoose.model('Doctor',Doctor)
-// const HospitalInfo = mongoose.model('Hospital',Hospital)
-// const App =()=>{
-//     console.log('it is working properly')
-// }
+
+const App =()=>{
+    console.log(process.env.DB_URL);
+}
 
 module.exports={
   Register :UserInfo,
   User: UserLogin,
-//   App: App,
-//   Doctor : DoctorInfo,
-//   Hospital: HospitalInfo
+  App: App,
+
 }
